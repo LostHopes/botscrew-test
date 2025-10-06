@@ -1,10 +1,14 @@
 package com.botscrew.university.dto;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -14,11 +18,14 @@ public class Department {
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long departmentId;
+    private Long id;
 
     @Column(unique = true, nullable = false)
-    private String departmentName;
+    private String name;
 
-    @OneToOne
-    private Lector headOfDepartment;
+    @OneToMany(cascade = CascadeType.REFRESH)
+    private List<Lector> lectors;
+
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private Lector head;
 }
