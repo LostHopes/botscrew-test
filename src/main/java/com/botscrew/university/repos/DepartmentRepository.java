@@ -14,10 +14,9 @@ import com.botscrew.university.dto.Role;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
-    @Query(
-        "SELECT d.head FROM Department d WHERE d.name = :depName AND d.head.degree.role = :role"
-    )
-    Optional<Lector> findDepartmentHead(@Param("depName") String depName, @Param("role") Role role);
+    
+    @Query("SELECT d.head FROM Department d WHERE d.name = :depName")
+    Optional<Lector> findDepartmentHead(@Param("depName") String depName);
 
     @Query("SELECT COUNT(l) FROM Department d JOIN d.lectors l WHERE d.name = :depName AND l.degree.role = :role")
     int countByRole(@Param("depName") String depName, @Param("role") Role role);
@@ -29,7 +28,8 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     @Query("SELECT COUNT(l) FROM Department d JOIN d.lectors l WHERE d.name = :depName")
     int countEmployees(@Param("depName") String depName);
 
-    @Query("SELECT d FROM Department d WHERE d.name LIKE %:template%")
-    List<Lector> searchLectorsByTemplate(@Param("template") String template);
+    @Query("SELECT l FROM Department d JOIN d.lectors l WHERE d.name = :depName AND l.name LIKE %:template%")
+    List<Lector> searchLectorsByTemplate(@Param("depName") String depName, @Param("template") String template);
+
 
 }
