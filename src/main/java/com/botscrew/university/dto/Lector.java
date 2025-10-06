@@ -24,7 +24,23 @@ public class Lector {
     @Column
     private int salary;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "degree_id")
     private Degree degree;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void setDegree(Degree degree) {
+        this.degree = degree;
+    }
 }

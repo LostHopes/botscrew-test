@@ -28,4 +28,16 @@ public class Department {
 
     @OneToOne(cascade = CascadeType.REMOVE)
     private Lector head;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setHead(Lector head) {
+        this.head = head;
+    }
+
+    public void setLectors(List<Lector> lectors) {
+        this.lectors = lectors;
+    }
 }
