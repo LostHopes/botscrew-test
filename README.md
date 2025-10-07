@@ -1,3 +1,8 @@
+# Requirements
+
+- Java >= 25
+- Docker (optional)
+
 # Build instructions
 
 ```sh
@@ -7,6 +12,12 @@ or
 
 ```sh
 ./gradlew clean build
+```
+
+and then run
+
+```sh
+java -jar build/libs/university-0.0.1-SNAPSHOT.jar
 ```
 
 ## With docker
