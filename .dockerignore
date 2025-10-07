@@ -1,0 +1,7 @@
+.vscode/
+.github/
+.git/
+.gitattributes
+build/
+.gradle/
+README.md
