@@ -1,0 +1,32 @@
+name: CI for University application
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v5
+
+    - name: Set up JDK 25
+      uses: actions/setup-java@v3
+      with:
+        java-version: 25
+
+    - name: Build with Gradle
+      run: ./gradlew clean build --no-daemon
+
+    - name: Build Docker image
+      run: docker build -t university .
+
+    - name: Test Docker container
+      run: |
+        docker run --rm university
