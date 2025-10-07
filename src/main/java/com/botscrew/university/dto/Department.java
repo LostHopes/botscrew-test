@@ -33,6 +33,10 @@ public class Department {
         this.name = name;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public void setHead(Lector head) {
         this.head = head;
     }
